@@ -11,6 +11,7 @@ library(survey)
 path <- "/Users/xinxiang/Desktop/GSS_stata/gss7224_r2.dta"
 raw  <- haven::read_dta(path)
 pick <- function(df, x) x[x %in% names(df)][1]
+#for all possible column name
 yrv  <- pick(raw, c("year","YEAR"))
 hapv <- pick(raw, c("happy","HAPPY"))
 agev <- pick(raw, c("age","AGE"))
@@ -25,7 +26,7 @@ dat <- raw %>%
     age = as.numeric(.data[[agev]]),
     wrk = as.integer(.data[[wrkv]]),
     inc = as.numeric(.data[[incv]]),
-    wt  = if (!is.na(wtv)) as.numeric(zap_labels(.data[[wtv]])) else 1 ) %>%
+    wt = if (!is.na(wtv)) as.numeric(.data[[wtv]]) else 1
   filter(yr %in% c(2018, 2021)) %>%
   mutate( post = if_else(yr == 2021, 1, 0),
     y = na_if(y, 0),
