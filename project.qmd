@@ -20,11 +20,11 @@ wtv  <- pick(raw, c("wtssall","WTSSALL","wtss","WTSS"))
 # clean
 dat <- raw %>%
   transmute(
-    yr  = as.integer(zap_labels(.data[[yrv]])),
-    y   = as.integer(zap_labels(.data[[hapv]])),
-    age = as.numeric(zap_labels(.data[[agev]])),
-    wrk = as.integer(zap_labels(.data[[wrkv]])),
-    inc = as.numeric(zap_labels(.data[[incv]])),
+    yr  = as.integer(.data[[yrv]]),
+    y   = as.integer(.data[[hapv]]),
+    age = as.numeric(.data[[agev]]),
+    wrk = as.integer(.data[[wrkv]]),
+    inc = as.numeric(.data[[incv]]),
     wt  = if (!is.na(wtv)) as.numeric(zap_labels(.data[[wtv]])) else 1 ) %>%
   filter(yr %in% c(2018, 2021)) %>%
   mutate( post = if_else(yr == 2021, 1, 0),
