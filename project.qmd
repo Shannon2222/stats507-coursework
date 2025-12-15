@@ -4,8 +4,6 @@ format: html
 editor: visual
 ---
 
-## Quarto
-
 ```{r}
 library(tidyverse)
 library(haven)
